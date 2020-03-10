@@ -1,0 +1,58 @@
+Adding at least 5 categories*
+INSERT INTO Categories VALUES('Dragon');
+INSERT INTO Categories VALUES('Owl');
+INSERT INTO Categories VALUES('Weasel');
+INSERT INTO Categories VALUES('Cat');
+INSERT INTO Categories VALUES('Rodent');
+INSERT INTO Categories VALUES('Dog');
+
+*Adding at least 5 diet plans*
+INSERT INTO DietPlans VALUES('Purina', 'Dog Food', '2')
+INSERT INTO DietPlans VALUES('Fancy Feast', 'Cat Food', '1')
+INSERT INTO DietPlans VALUES('Dead Mice Mix', 'Owl Food', '2')
+INSERT INTO DietPlans VALUES('Carnivore Kibble', 'Weasel Food', '1')
+INSERT INTO DietPlans VALUES('Seed Mix', 'Rodent Food', '1')
+INSERT INTO DietPlans VALUES('Little Lamb Meat', 'Dragon Food', '10')
+
+*Adding at least 5 animals*
+INSERT INTO Animals VALUES('Keldon', '700', '25', 'Kind', '1', '1', 'Male', 'Open', '1', '7', '3')
+INSERT INTO Animals VALUES('Larisa', '900', '45', 'Protective', '0', '0', 'Female', 'Open', '1', '7', '3')
+INSERT INTO Animals VALUES('Whoolio', '2', '3', 'Playful', '1', '1', 'Male', 'Adopted', '2', '3', '2')
+INSERT INTO Animals VALUES('Spyro', '1500', '145', 'Outgoing', '1', '0', 'Male', 'Open', '1', '7', '3')
+INSERT INTO Animals VALUES('Midnight', '7', '15', 'Shy', '0', '0', 'Female', 'Open', '2', '3', '2')
+INSERT INTO Animals VALUES('Harley', '65', '3', 'Outgoing', '1', '1', 'Male', 'Open', '6', '1', '5')
+INSERT INTO Animals VALUES('Oscar', '13', '5', 'Friendly', '1', '1', 'Male', 'Open', '4', '2', '4')
+INSERT INTO Animals VALUES('Django', '3', '2', 'Outgoing', '1', '0', 'Male', 'Open', '3', '4', '1')
+INSERT INTO Animals VALUES('Cinnamon', '1', '1', 'Skittish', '1', '1', 'Female', 'Open', '5', '6', '1')
+
+*Adding at least 10 rooms*
+INSERT INTO Rooms VALUES('1', '4');
+INSERT INTO Rooms ValueS('2', '5');
+INSERT INTO Rooms ValueS('3', '6');
+INSERT INTO Rooms ValueS('4', '7');
+INSERT INTO Rooms ValueS('5', '8');
+INSERT INTO Rooms ValueS('6', '9');
+INSERT INTO Rooms ValueS('7', '10');
+INSERT INTO Rooms ValueS('8', '11');
+INSERT INTO Rooms ValueS('9', '12');
+INSERT INTO Rooms ValueS('10', null);
+
+*Adding at least 5 employees*
+INSERT INTO Employees VALUES('Charles','King','CharlesKHS1','LigersAreBeast!','65097','CharlesK@HumaneSociety.com');
+INSERT INTO Employees VALUES('Mike','Heinisch','MikeHHS1','DragonsAreLit!','10043','MikeH@HumaneSociety.com');
+INSERT INTO Employees VALUES('Danielle','Demke','DanielleDHS1','FerretsRule!','43067','DanielleD@HumaneSociety.com');
+INSERT INTO Employees VALUES('Dylan','DeRouchie','DylanDHS1','ILoveOwls11!','1337','DylanD@HumaneSociety.com');
+INSERT INTO Employees VALUES('Mike','Terrill','MikeTHS1','DogAreMyFavorite!','32056','MikeT@HumaneSociety.com');
+
+*Adding at least 5 clients*
+INSERT INTO Clients VALUES('Michael', 'Scott', 'GreatScott', 'dundermifflin', '1', 'michaelscott@dundermifflin.com');
+INSERT INTO Clients VALUES('Dwight', 'Schrute', 'BeetsAreBest', 'dwight1', '1', 'dwightschrute@dundermifflin.com');
+INSERT INTO Clients VALUES('Spongebob', 'Squarepants', 'spongerules', 'garythesnail', '2', 'spongebob@krustykrab.com')
+INSERT INTO Clients VALUES('Rick', 'Sanchez', 'rickc137', 'ilovemorty', '3', 'theBestRick@gmail.com');
+INSERT INTO Clients VALUES('Sterling', 'Archer', 'sArcher', 'somethingCool', '4', 'sarcher@cia.com');
+
+*Addresses for clients*
+INSERT INTO Addresses VALUES('1725 Slough Avenue', 'Scranton', '38', '18505');
+INSERT INTO Addresses VALUES('124 Conch Street', 'Captain Cook', '11', '96704');
+INSERT INTO Addresses VALUES('2245 1st Avenue S', 'Seattle', '47', '98134');
+INSERT INTO Addresses VALUES('103 Prince Street', 'New York', '32', '10012');
