@@ -197,29 +197,7 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-            Animal updatedAnimal = db.Animals.Where(t => t.AnimalId == animalId).SingleOrDefault();
-            if(updates.ContainsKey(1))
-            {
-                string updatedAnimalCategory = updates[1];
-                Category category = db.Categories.Where(c => c.Name == updatedAnimalCategory).SingleOrDefault();
-                updatedAnimal.CategoryId = category.CategoryId;
-            }
-            if(updates.ContainsKey(2))
-            {
-                updatedAnimal.Name = updates[2];
-            }
-            if(updates.ContainsKey(3))
-            {
-                updatedAnimal.Age = int.Parse(updates[3]);
-            }
-            if(updates.ContainsKey(4))
-            {
-                updatedAnimal.Demeanor = updates[4];
-            }
-            if(updates.ContainsKey(5))
-            {
-                updatedAnimal.KidFriendly = updates[5];
-            }
+          
 
             
         }
