@@ -213,10 +213,6 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-<<<<<<< HEAD
-
-=======
->>>>>>> ff2bd31b9ddaca8a342ba1d2a89efdb7cc916aaf
             var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             foreach (KeyValuePair<int, string> item in updates)
             {
@@ -252,11 +248,6 @@ namespace HumaneSociety
             }
             db.SubmitChanges();
         }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ff2bd31b9ddaca8a342ba1d2a89efdb7cc916aaf
 
         internal static void RemoveAnimal(Animal animal)
         {
@@ -267,8 +258,8 @@ namespace HumaneSociety
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-            Animal animal;
-            return animal;
+            var searchedAnimal = db.Animals.Where(a => a.Category.CategoryId == int.Parse(updates[1]) && a.Name == updates[2] && a.Age == int.Parse(updates[3]) && a.Demeanor == updates[4] && a.KidFriendly == Convert.ToBoolean(updates[5]) && a.PetFriendly == Convert.ToBoolean(updates[6]) && a.Weight == int.Parse(updates[7]));
+            return searchedAnimal;
         }
          
         // TODO: Misc Animal Things
@@ -296,19 +287,14 @@ namespace HumaneSociety
         // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
         {
-<<<<<<< HEAD
             animal.AdoptionStatus = "Pending";
             Adoption adoption = new Adoption();
             adoption.Animal = animal;
             adoption.AnimalId = animal.AnimalId;
             adoption.Client = client;
             adoption.ClientId = client.ClientId;
-            
             db.Adoptions.InsertOnSubmit(adoption);
             db.SubmitChanges();
-=======
-
->>>>>>> ff2bd31b9ddaca8a342ba1d2a89efdb7cc916aaf
         }
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
