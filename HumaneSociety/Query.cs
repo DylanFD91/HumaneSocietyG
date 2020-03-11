@@ -213,7 +213,6 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-
             var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             foreach (KeyValuePair<int, string> item in updates)
             {
@@ -259,7 +258,6 @@ namespace HumaneSociety
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-          
         }
          
         // TODO: Misc Animal Things
