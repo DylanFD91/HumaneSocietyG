@@ -193,9 +193,41 @@ namespace HumaneSociety
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
-        {            
+        {
+            var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
+            foreach (KeyValuePair<int, string> item in updates)
+            {
+                switch (item.Key)
+                {
+                    case 1:
+                        bool isItThere = db.Categories.Any(c => c.CategoryId == int.Parse(item.Value));
+                        //bool isThere = db.Categories.Where(c => c.CategoryId == int.Parse(item.Value));
+                        if (isItThere == true)
+                        {
+                            acquiredAnimal.CategoryId = int.Parse(item.Value);
+                        }
+                        break;
+                    case 2:
+                        acquiredAnimal.Name = item.Value;
+                        break;
+                    case 3:
+                        acquiredAnimal.Age = int.Parse(item.Value);
+                        break;
+                    case 4:
+                        acquiredAnimal.Demeanor = item.Value;
+                        break;
+                    case 5:
+                        acquiredAnimal.KidFriendly = Convert.ToBoolean(item.Value);
+                        break;
+                    case 6:
+                        acquiredAnimal.PetFriendly = Convert.ToBoolean(item.Value);
+                        break;
+                    case 7:
+                        acquiredAnimal.Weight = int.Parse(item.Value);
+                        break;
+                }
+            }
 
-            throw new NotImplementedException();
         }
 
         internal static void RemoveAnimal(Animal animal)
@@ -255,17 +287,11 @@ namespace HumaneSociety
         // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
-            
-
-
             throw new NotImplementedException();
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
         {
-
-            
-
             throw new NotImplementedException();
         }
     }
