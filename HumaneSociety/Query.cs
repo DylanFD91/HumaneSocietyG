@@ -196,13 +196,38 @@ namespace HumaneSociety
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
-        {            
-            throw new NotImplementedException();
+        {
+            Animal updatedAnimal = db.Animals.Where(t => t.AnimalId == animalId).SingleOrDefault();
+            if(updates.ContainsKey(1))
+            {
+                string updatedAnimalCategory = updates[1];
+                Category category = db.Categories.Where(c => c.Name == updatedAnimalCategory).SingleOrDefault();
+                updatedAnimal.CategoryId = category.CategoryId;
+            }
+            if(updates.ContainsKey(2))
+            {
+                updatedAnimal.Name = updates[2];
+            }
+            if(updates.ContainsKey(3))
+            {
+                updatedAnimal.Age = int.Parse(updates[3]);
+            }
+            if(updates.ContainsKey(4))
+            {
+                updatedAnimal.Demeanor = updates[4];
+            }
+            if(updates.ContainsKey(5))
+            {
+                updatedAnimal.KidFriendly = updates[5];
+            }
+
+            
         }
 
         internal static void RemoveAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            db.Animals.DeleteOnSubmit(animal);
+            db.SubmitChanges();
         }
         
         // TODO: Animal Multi-Trait Search
@@ -219,12 +244,13 @@ namespace HumaneSociety
         
         internal static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            Room dbRoom = db.Rooms.Where(s => s.AnimalId == animalId).FirstOrDefault();
+            return dbRoom;
         }
         
         internal static int GetDietPlanId(string dietPlanName)
         {
-            throw new NotImplementedException();
+            
         }
 
         // TODO: Adoption CRUD Operations
@@ -235,7 +261,8 @@ namespace HumaneSociety
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
-            throw new NotImplementedException();
+            var pendingAdoptions = db.Animals.Select(a => a.AdoptionStatus == "Pending");
+            return pendingAdoptions;
         }
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
