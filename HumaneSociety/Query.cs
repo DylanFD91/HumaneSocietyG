@@ -173,6 +173,7 @@ namespace HumaneSociety
         internal static void AddAnimal(Animal animal)
         {
             Animal animalFromDb = db.Animals.Where(a => a.AnimalId == animal.AnimalId).FirstOrDefault();
+
             animalFromDb.Category = animal.Category;
             animalFromDb.Demeanor = animal.Demeanor;
             animalFromDb.DietPlan = animal.DietPlan;
@@ -183,7 +184,9 @@ namespace HumaneSociety
             animalFromDb.KidFriendly = animal.KidFriendly;
             animalFromDb.PetFriendly = animal.PetFriendly;
             animalFromDb.Weight = animal.Weight;
+
             db.SubmitChanges();
+
         }
 
         internal static Animal GetAnimalByID(int id)
@@ -194,6 +197,7 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
+<<<<<<< HEAD
             var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             foreach (KeyValuePair<int, string> item in updates)
             {
@@ -228,6 +232,11 @@ namespace HumaneSociety
                 }
             }
             db.SubmitChanges();
+=======
+          
+
+            
+>>>>>>> 4701183ebd195d932889c9e0334c4217a87c5c6f
         }
 
         internal static void RemoveAnimal(Animal animal)
@@ -245,22 +254,18 @@ namespace HumaneSociety
         // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
-            var acquiredCategoryIdObject = db.Categories.Where(c => c.Name == categoryName).FirstOrDefault();
-            int acquiredCategoryId = acquiredCategoryIdObject.CategoryId;
-            return acquiredCategoryId;
+            throw new NotImplementedException();
         }
         
         internal static Room GetRoom(int animalId)
         {
-            var acquiredRoom = db.Rooms.Where(r => r.AnimalId == animalId).FirstOrDefault();
-            return acquiredRoom;
+            Room dbRoom = db.Rooms.Where(s => s.AnimalId == animalId).FirstOrDefault();
+            return dbRoom;
         }
         
         internal static int GetDietPlanId(string dietPlanName)
         {
-            var acquiredDietPlan = db.DietPlans.Where(d => d.DietPlanId.ToString() == dietPlanName).FirstOrDefault();
-            int acquiredDietPlanInt = acquiredDietPlan.DietPlanId;
-            return acquiredDietPlanInt;
+            
         }
 
         // TODO: Adoption CRUD Operations
@@ -271,7 +276,8 @@ namespace HumaneSociety
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
-            throw new NotImplementedException();
+            var pendingAdoptions = db.Animals.Select(a => a.AdoptionStatus == "Pending");
+            return pendingAdoptions;
         }
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
