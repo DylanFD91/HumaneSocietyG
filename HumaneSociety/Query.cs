@@ -198,6 +198,9 @@ namespace HumaneSociety
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 13c10d095565d166e1341bd76f1b018d7450cee4
             var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             foreach (KeyValuePair<int, string> item in updates)
             {
@@ -230,6 +233,7 @@ namespace HumaneSociety
                         acquiredAnimal.Weight = int.Parse(item.Value);
                         break;
                 }
+<<<<<<< HEAD
             }
             db.SubmitChanges();
 =======
@@ -237,6 +241,11 @@ namespace HumaneSociety
 
             
 >>>>>>> 4701183ebd195d932889c9e0334c4217a87c5c6f
+=======
+
+
+            }
+>>>>>>> 13c10d095565d166e1341bd76f1b018d7450cee4
         }
 
         internal static void RemoveAnimal(Animal animal)
@@ -254,8 +263,11 @@ namespace HumaneSociety
         // TODO: Misc Animal Things
         internal static int GetCategoryId(string categoryName)
         {
-            throw new NotImplementedException();
+            var acquiredCategoryIdObject = db.Categories.Where(c => c.Name == categoryName).FirstOrDefault();
+            int acquiredCategoryId = acquiredCategoryIdObject.CategoryId;
+            return acquiredCategoryId;
         }
+    
         
         internal static Room GetRoom(int animalId)
         {
@@ -265,8 +277,10 @@ namespace HumaneSociety
         
         internal static int GetDietPlanId(string dietPlanName)
         {
-            
-        }
+        var acquiredDietPlan = db.DietPlans.Where(d => d.DietPlanId.ToString() == dietPlanName).FirstOrDefault();
+        int acquiredDietPlanInt = acquiredDietPlan.DietPlanId;
+        return acquiredDietPlanInt;
+    }
 
         // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
