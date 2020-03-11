@@ -204,7 +204,7 @@ namespace HumaneSociety
                 {
                     case 1:
                         bool isItThere = db.Categories.Any(c => c.CategoryId == int.Parse(item.Value));
-                        //bool isThere = db.Categories.Where(c => c.CategoryId == int.Parse(item.Value));
+                       
                         if (isItThere == true)
                         {
                             acquiredAnimal.CategoryId = int.Parse(item.Value);
