@@ -8,6 +8,13 @@ namespace HumaneSociety
 {
     public static class UserInterface
     {
+        public static void DisplayEmployeeInfo(Employee employee)
+        {
+            Console.WriteLine("Employee Name: " + employee.FirstName + " " +  employee.LastName + 
+                              "Employee ID #: " + employee.EmployeeNumber + 
+                              "Employee Username: " + employee.UserName +
+                              "Employee Email: " + employee.Email);
+        }
         public static void DisplayUserOptions(List<string> options)
         {
             foreach(string option in options)
