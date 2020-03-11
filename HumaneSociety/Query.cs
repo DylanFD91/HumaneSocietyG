@@ -173,7 +173,6 @@ namespace HumaneSociety
         internal static void AddAnimal(Animal animal)
         {
             Animal animalFromDb = db.Animals.Where(a => a.AnimalId == animal.AnimalId).FirstOrDefault();
-
             animalFromDb.Category = animal.Category;
             animalFromDb.Demeanor = animal.Demeanor;
             animalFromDb.DietPlan = animal.DietPlan;
@@ -184,7 +183,6 @@ namespace HumaneSociety
             animalFromDb.KidFriendly = animal.KidFriendly;
             animalFromDb.PetFriendly = animal.PetFriendly;
             animalFromDb.Weight = animal.Weight;
-
             db.SubmitChanges();
 
         }
@@ -197,10 +195,7 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 13c10d095565d166e1341bd76f1b018d7450cee4
+
             var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             foreach (KeyValuePair<int, string> item in updates)
             {
@@ -208,7 +203,7 @@ namespace HumaneSociety
                 {
                     case 1:
                         bool isItThere = db.Categories.Any(c => c.CategoryId == int.Parse(item.Value));
-                       
+
                         if (isItThere == true)
                         {
                             acquiredAnimal.CategoryId = int.Parse(item.Value);
@@ -233,20 +228,11 @@ namespace HumaneSociety
                         acquiredAnimal.Weight = int.Parse(item.Value);
                         break;
                 }
-<<<<<<< HEAD
             }
             db.SubmitChanges();
-=======
-          
-
-            
->>>>>>> 4701183ebd195d932889c9e0334c4217a87c5c6f
-=======
-
-
-            }
->>>>>>> 13c10d095565d166e1341bd76f1b018d7450cee4
         }
+
+
 
         internal static void RemoveAnimal(Animal animal)
         {
@@ -285,23 +271,37 @@ namespace HumaneSociety
         // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
         {
-            throw new NotImplementedException();
+            animal.AdoptionStatus = "Pending";
+            Adoption adoption = new Adoption();
+            adoption.Animal = animal;
+            adoption.AnimalId = animal.AnimalId;
+            adoption.Client = client;
+            adoption.ClientId = client.ClientId;
+            
+            db.Adoptions.InsertOnSubmit(adoption);
+            db.SubmitChanges();
         }
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
-            var pendingAdoptions = db.Animals.Select(a => a.AdoptionStatus == "Pending");
+            var pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == null);
             return pendingAdoptions;
         }
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
-            throw new NotImplementedException();
+            if(isAdopted)
+            {
+                adoption.Animal.AdoptionStatus = "Adopted";
+                adoption.ApprovalStatus = 
+            }
+           
+
         }
 
         internal static void RemoveAdoption(int animalId, int clientId)
         {
-            throw new NotImplementedException();
+            
         }
 
         // TODO: Shots Stuff
