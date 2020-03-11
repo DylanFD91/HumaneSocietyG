@@ -213,6 +213,10 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 674ed688783e62a1ee2e2009cded0aa44a386f7c
             var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             foreach (KeyValuePair<int, string> item in updates)
             {
@@ -273,7 +277,7 @@ namespace HumaneSociety
         
         internal static Room GetRoom(int animalId)
         {
-            Room dbRoom = db.Rooms.Where(s => s.AnimalId == animalId).FirstOrDefault();
+            var dbRoom = db.Rooms.Where(s => s.AnimalId == animalId).FirstOrDefault();
             return dbRoom;
         }
         
@@ -308,21 +312,29 @@ namespace HumaneSociety
             if(isAdopted)
             {
                 adoption.Animal.AdoptionStatus = "Adopted";
-                adoption.ApprovalStatus = 
+                adoption.ApprovalStatus = "Approved";
+                adoption.PaymentCollected = true;
             }
-           
-
+            else
+            {
+                adoption.Animal.AdoptionStatus = "Open";
+                adoption.ApprovalStatus = "Denied";
+                adoption.PaymentCollected = false;
+            }
         }
 
         internal static void RemoveAdoption(int animalId, int clientId)
         {
-            
+            var adoption = db.Adoptions.Where(a => a.AnimalId == animalId && a.ClientId == clientId).FirstOrDefault();
+            db.Adoptions.DeleteOnSubmit(adoption);
+            db.SubmitChanges();
         }
 
         // TODO: Shots Stuff
         internal static IQueryable<AnimalShot> GetShots(Animal animal)
         {
-            throw new NotImplementedException();
+             var animalShots = db.AnimalShots.Where(s => s.Animal == animal);
+            return animalShots;
         }
 
         internal static void UpdateShot(string shotName, Animal animal)
