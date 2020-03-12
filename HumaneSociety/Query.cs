@@ -333,7 +333,10 @@ namespace HumaneSociety
 
         internal static void UpdateShot(string shotName, Animal animal)
         {
-
+            var shot = db.Shots.Where(s => s.Name == shotName);
+            AnimalShot animalShot = db.AnimalShots.Where(a => a.AnimalId == animal.AnimalId).Where(b => b.ShotId == Convert.ToInt32(shot));
+            animalShot.DateReceived = new DateTime(2020,3,11);
+            db.SubmitChanges();
         }
     }
 }
