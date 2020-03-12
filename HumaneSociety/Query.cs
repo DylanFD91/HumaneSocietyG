@@ -213,10 +213,6 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-<<<<<<< HEAD
-=======
-
->>>>>>> 674ed688783e62a1ee2e2009cded0aa44a386f7c
             var acquiredAnimal = db.Animals.Where(a => a.AnimalId == animalId).FirstOrDefault();
             foreach (KeyValuePair<int, string> item in updates)
             {
@@ -262,7 +258,7 @@ namespace HumaneSociety
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-            var searchedAnimal = db.Animals.Where(a => a.Category.CategoryId == int.Parse(updates[1]) && a.Name == updates[2] && a.Age == int.Parse(updates[3]) && a.Demeanor == updates[4] && a.KidFriendly == Convert.ToBoolean(updates[5]) && a.PetFriendly == Convert.ToBoolean(updates[6]) && a.Weight == int.Parse(updates[7]));
+            IQueryable<Animal> searchedAnimal = db.Animals.Where(a => a.Category.CategoryId == int.Parse(updates[1]) && a.Name == updates[2] && a.Age == int.Parse(updates[3]) && a.Demeanor == updates[4] && a.KidFriendly == Convert.ToBoolean(updates[5]) && a.PetFriendly == Convert.ToBoolean(updates[6]) && a.Weight == int.Parse(updates[7]));
             return searchedAnimal;
         }
          
@@ -293,9 +289,7 @@ namespace HumaneSociety
         {
             animal.AdoptionStatus = "Pending";
             Adoption adoption = new Adoption();
-            adoption.Animal = animal;
             adoption.AnimalId = animal.AnimalId;
-            adoption.Client = client;
             adoption.ClientId = client.ClientId;
             db.Adoptions.InsertOnSubmit(adoption);
             db.SubmitChanges();
@@ -303,7 +297,7 @@ namespace HumaneSociety
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
-            var pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == null);
+            var pendingAdoptions = db.Adoptions.Where(a => a.ApprovalStatus == "Pending");
             return pendingAdoptions;
         }
 
@@ -339,7 +333,7 @@ namespace HumaneSociety
 
         internal static void UpdateShot(string shotName, Animal animal)
         {
-            throw new NotImplementedException();
+
         }
     }
 }
